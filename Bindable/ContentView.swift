@@ -7,13 +7,20 @@
 
 import SwiftUI
 
+@Observable class Book {
+    var title: String
+    init(title: String) {
+        self.title = title
+    }
+}
+
 struct ContentView: View {
+    @Bindable var book = Book(title: "해리포터")
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("\(book.title)")
+            TextField("Title", text: $book.title)
         }
         .padding()
     }
